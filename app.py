@@ -4,14 +4,8 @@ import ast
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# ======================
-# Config
-# ======================
 st.set_page_config(page_title="Movie Recommendation System", layout="wide")
 
-# ======================
-# Funções auxiliares
-# ======================
 @st.cache_data
 def load_data(path="data/processed/movies_cleaned.csv"):
     return pd.read_csv(path)
@@ -42,37 +36,28 @@ def recommend(title, df, sim, n=10):
     recs["score"] = [i[1] for i in scores]
     return recs
 
-# ======================
-# App Streamlit
-# ======================
 st.title("Movie Recommendation System")
 st.markdown("Enter a movie title or pick one from the list to get personalized recommendations!")
 
-# Load data & model
 df = load_data()
 sim, df = build_model(df)
 
-# Inputs
 user_input = st.text_input("🔹 Type a movie title:", "")
 movie_select = st.selectbox("Or select from the dataset:", df["original_title"].values)
 top_n = st.slider("Number of recommendations", 5, 20, 10)
 
-# Botão
 if st.button("Recommend"):
     movie = user_input if user_input.strip() else movie_select
     results = recommend(movie, df, sim, top_n)
 
     if results is not None and not results.empty:
         for _, row in results.iterrows():
-            # Título + ano + ícone de câmera 🎥
             st.markdown(f"## 🎥 {row['original_title']} ({row['release_date'][:4]})")
 
-            # Linha com rating e gêneros
             st.markdown(
                 f"⭐ {row['vote_average']} | 🎭 {clean_genres(row['genres'])}"
             )
 
-            # Barra de similaridade
             st.progress(float(row["score"]))
             st.markdown("---")
     else:

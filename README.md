@@ -24,7 +24,6 @@ The project is based on the **TMDB 5000 Movies + Credits dataset**, covering the
 
 ## ⚙️ Project Structure  
 
-```bash
 Movie-Recommendation/
 │── data/
 │   ├── raw/                 # Original data (movies + credits)

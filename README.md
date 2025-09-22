@@ -35,8 +35,7 @@ Movie-Recommendation/
 │── requirements.txt         # Dependencies
 │── Dockerfile               # Container configuration
 │── README.md                # Documentation
-
----
+   
 
 ##  Exploratory Data Analysis
 

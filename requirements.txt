@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+pytest
+notebook
+streamlit
+seaborn
+matplotlib
+wordcloud
+streamlit
+requests
+python-dotenv

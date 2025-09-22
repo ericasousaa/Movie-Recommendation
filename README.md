@@ -36,6 +36,7 @@ Movie-Recommendation/
 │── Dockerfile               # Container configuration
 │── README.md                # Documentation
 ```
+---
 
 ##  Exploratory Data Analysis
 
